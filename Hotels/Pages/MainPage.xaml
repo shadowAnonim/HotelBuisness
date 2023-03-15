@@ -14,6 +14,7 @@
             <Button x:Name="roomsBtn" Content="Номера" Click="roomsBtn_Click"/>
             <Button x:Name="guestsBtn" Content="Гости" Click="guestsBtn_Click"/>
             <Button x:Name="bookingsBtn" Content="Бронирование" Click="bookingsBtn_Click" />
+            <Button x:Name="clientsBtn" Content="Клиенты" Click="clientsBtn_Click" />
         </StackPanel>
     </Grid>
 </Page>

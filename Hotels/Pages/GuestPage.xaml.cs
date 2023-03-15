@@ -42,6 +42,11 @@ namespace Hotels.Pages
         {
             try
             {
+                if(fullNameTb.Text.Length > 150)
+                {
+                    Utils.Error("Имя слишком длинное");
+                    return;
+                }
                 if (!Utils.checkPhone(phoneTb.Text))
                 {
                     Utils.Error("Неверный формат телефона");
