@@ -31,7 +31,7 @@
                 <DataGridTextColumn Header="Номер" Binding="{Binding Room.Name}"/>
                 <DataGridTextColumn Header="Заезд" Binding="{Binding ArrivalDate}"/>
                 <DataGridTextColumn Header="Выезд" Binding="{Binding DepartureDate}"/>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Total}"/>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Total}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -167,6 +167,11 @@ public partial class HotelsContext : DbContext
         .Property(e => e.Total)
         .HasConversion<decimal>();
 
+        modelBuilder
+        .Entity<Booking>()
+        .Property(e => e.Accept)
+        .HasConversion<bool>();
+
         OnModelCreatingPartial(modelBuilder);
     }
 

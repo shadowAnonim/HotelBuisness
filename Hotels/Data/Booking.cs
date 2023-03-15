@@ -19,7 +19,7 @@ public partial class Booking
 
     public decimal? Total { get; set; } = null!;
 
-    public byte[] Accept { get; set; } = null!;
+    public bool? Accept { get; set; } = null!;
 
     public virtual Client Client { get; set; } = null!;
 
