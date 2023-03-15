@@ -34,19 +34,22 @@ namespace Hotels.Pages
             else
             {
                 this.booking = new Booking();
-                booking.ArrivalDate = Utils.DateToBytes(DateTime.Now);
-                booking.DepartureDate = Utils.DateToBytes(DateTime.Now.AddDays(1));
+                this.booking.ArrivalDate = Utils.DateToBytes(DateTime.Now);
+                this.booking.DepartureDate = Utils.DateToBytes(DateTime.Now.AddDays(1));
             }
 
             main.DataContext = this.booking;
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (endDp.SelectedDate.Value.Date <= DateTime.Now.AddDays(1)) 
+        { 
+            if (endDp.SelectedDate.Value.Date <= startDp.SelectedDate.Value.Date)
             {
                 Utils.Error("Дата выезда должна быть позже даты заезда");
+                return;
             }
+            booking.ArrivalDate = Utils.DateToBytes(startDp.SelectedDate.Value);
+            booking.DepartureDate = Utils.DateToBytes(endDp.SelectedDate.Value);
             if (!edit)
             {
                 Utils.db.Bookings.Add(booking);

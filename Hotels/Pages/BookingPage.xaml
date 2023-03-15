@@ -18,6 +18,10 @@
                 <Label Content="Выезд:" Width="75"/>
                 <DatePicker x:Name="endDp" SelectedDate="{Binding DepartureDateNormal}"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                <Label Content="Выезд:" Width="75"/>
+                <ComboBox x:Name="roomCb" SelectedItem="{Binding Room, Mode=TwoWay}" DisplayMemberPath="Name"/>
+            </StackPanel>
             <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
         </StackPanel>
     </Grid>

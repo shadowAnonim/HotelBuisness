@@ -12,7 +12,7 @@
         <StackPanel>
             <Button x:Name="hotelsBtn" Content="Отели" Click="hotelsBtn_Click"/>
             <Button x:Name="roomsBtn" Content="Номера" Click="roomsBtn_Click"/>
-            <Button x:Name="bookingsBtn" Content="Занятость" Click="bookingsBtn_Click"/>
+            <Button x:Name="bookingsBtn" Content="Занятость" Click="bookingsBtn_Click" Visibility="Collapsed"/>
         </StackPanel>
     </Grid>
 </Page>

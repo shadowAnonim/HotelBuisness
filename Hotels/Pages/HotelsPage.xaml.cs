@@ -73,6 +73,17 @@ namespace Hotels.Pages
             fillDataGrid();
         }
 
+        private void bookBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Hotel selected = hotelsDg.SelectedItem as Hotel;
+            if (selected == null)
+            {
+                Utils.Error("Выберите отель");
+                return;
+            }
+            NavigationService.Navigate(new BookingsPage(selected));
+        }
+
         private void roomsBtn_Click(object sender, RoutedEventArgs e)
         {
             Hotel selected = hotelsDg.SelectedItem as Hotel;
