@@ -25,10 +25,13 @@
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" BorderBrush="Red" BorderThickness="3,3,3,3" Click="deleteBtn_Click" Margin="0,0,0,10" VerticalAlignment="Bottom"/>
         <DataGrid x:Name="hotelsDg" Grid.Row="1" Grid.ColumnSpan="10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Дата бронирования" Binding="{Binding BookingDate}"/>
+                <DataGridTextColumn Header="Заказачик" Binding="{Binding Client.ClientName}"/>
+                <DataGridTextColumn Header="Отель" Binding="{Binding Room.Hotel.Name}"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding Room.Name}"/>
                 <DataGridTextColumn Header="Заезд" Binding="{Binding ArrivalDate}"/>
                 <DataGridTextColumn Header="Выезд" Binding="{Binding DepartureDate}"/>
-                <DataGridTextColumn Header="Номер" Binding="{Binding Room.Name}"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding Total}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

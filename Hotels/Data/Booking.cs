@@ -7,17 +7,17 @@ public partial class Booking
 {
     public long Id { get; set; }
 
-    public byte[] ArrivalDate { get; set; } = null!;
+    public DateTime? ArrivalDate { get; set; } = null!;
 
-    public byte[] DepartureDate { get; set; } = null!;
+    public DateTime? DepartureDate { get; set; } = null!;
 
     public long RoomId { get; set; }
 
     public long ClientId { get; set; }
 
-    public byte[] BookingDate { get; set; } = null!;
+    public DateTime? BookingDate { get; set; } = null!;
 
-    public byte[] Total { get; set; } = null!;
+    public decimal? Total { get; set; } = null!;
 
     public byte[] Accept { get; set; } = null!;
 

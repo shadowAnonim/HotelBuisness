@@ -13,8 +13,6 @@ namespace Hotels
     {
         public static HotelsContext db = new HotelsContext();
 
-        public static int x = 0;
-
         public static void Error(string message)
         {
             MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -27,7 +25,7 @@ namespace Hotels
 
         public static bool checkPhone(string input)
         {
-            return Regex.IsMatch(input, "^\\+?(\\d{1,3})?[- .]?\\(?(?:\\d{2,3})\\)?[- .]?\\d\\d\\d[- .]?\\d\\d\\d\\d$/");
+            return Regex.IsMatch(input, "^\\+?(\\d{1,3})?[- .]?\\(?(?:\\d{2,3})\\)?[- .]?\\d\\d\\d[- .]?\\d\\d\\d\\d$");
         }
 
         public static byte[] DateToBytes(DateTime date)

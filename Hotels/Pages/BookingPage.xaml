@@ -11,6 +11,10 @@
     <Grid x:Name="main">
         <StackPanel>
             <StackPanel Orientation="Horizontal">
+                <Label Content="Номер:" Width="75"/>
+                <ComboBox x:Name="clientCb" SelectedItem="{Binding Room, Mode=TwoWay}" DisplayMemberPath="Name"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <Label Content="Заезд:" Width="75"/>
                 <DatePicker x:Name="startDp" SelectedDate="{Binding ArrivalDateNormal}"/>
             </StackPanel>
@@ -19,7 +23,7 @@
                 <DatePicker x:Name="endDp" SelectedDate="{Binding DepartureDateNormal}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Выезд:" Width="75"/>
+                <Label Content="Номер:" Width="75"/>
                 <ComboBox x:Name="roomCb" SelectedItem="{Binding Room, Mode=TwoWay}" DisplayMemberPath="Name"/>
             </StackPanel>
             <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>

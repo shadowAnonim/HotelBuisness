@@ -23,7 +23,7 @@ namespace Hotels.Pages
     public partial class BookingsPage : Page
     {
         Hotel hotel;
-        public BookingsPage(Hotel hotel)
+        public BookingsPage(Hotel hotel = null)
         {
             InitializeComponent();
             this.hotel = hotel;
@@ -31,7 +31,13 @@ namespace Hotels.Pages
 
         private void fillDataGrid()
         {
-            List<Booking> hotels = Utils.db.Bookings.Include(b => b.Room).Where(b => b.Room.Hotel == hotel).ToList();
+            List<Booking> hotels = Utils.db.Bookings.Include(b => b.Room)
+                .ThenInclude(b => b.Hotel)
+                .Include(b => b.Client).ToList();
+            if(hotel != null)
+            {
+                hotels = hotels.Where(b => b.Room.Hotel == hotel).ToList();
+            }            
             hotelsDg.ItemsSource = hotels;
         }
 
