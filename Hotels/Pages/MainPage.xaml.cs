@@ -61,12 +61,15 @@ namespace Hotels.Pages
         }
         private void departureBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
-
         private void vdepartureBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new DeparturesPage());
+        }
+        private void ArrivesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ArrivalsPage());
         }
     }
 }

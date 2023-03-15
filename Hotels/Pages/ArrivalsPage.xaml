@@ -9,6 +9,25 @@
       Title="ArrivalsPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="addBtn" Content="Добавить" Grid.Column="0" Click="addBtn_Click" Visibility="Collapsed"/>
+        <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1" Click="editBtn_Click" Visibility="Collapsed"/>
+        <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" BorderBrush="Red" BorderThickness="3,3,3,3" Click="deleteBtn_Click" Visibility="Collapsed"/>
+        <DataGrid x:Name="roomsDg" Grid.Row="1" Grid.ColumnSpan="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата оформления" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Дата выезда" Binding="{Binding DepartureDate}"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding Room.Name}"/>
+                <DataGridTextColumn Header="Отель" Binding="{Binding Room.Hotel.Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

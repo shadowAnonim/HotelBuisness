@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hotels.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,32 @@ namespace Hotels.Pages
         public ArrivalsPage()
         {
             InitializeComponent();
+        }
+
+        private void fillDataGrid()
+        {
+            List<Arrive> departures = Utils.db.Arrives.Include(d => d.Room).ThenInclude(r => r.Hotel).Include(d => d.Booking).ToList();
+
+            roomsDg.ItemsSource = departures;
+        }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            fillDataGrid();
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
