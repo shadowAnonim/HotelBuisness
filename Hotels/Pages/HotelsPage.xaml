@@ -13,8 +13,6 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,10 +20,8 @@
         </Grid.RowDefinitions>
         <Button x:Name="addBtn" Content="Добавить" Grid.Column="0" Click="addBtn_Click"/>
         <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1" Click="editBtn_Click"/>
-        <Button x:Name="roomsBtn" Content="Показать номера" Grid.Column="4"/>
-        <Button x:Name="bookBtn" Content="Занятость" Grid.Column="3"/>
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" BorderBrush="Red" BorderThickness="3,3,3,3" Click="deleteBtn_Click"/>
-        <DataGrid x:Name="hotelsDg" Grid.Row="1" Grid.ColumnSpan="10">
+        <DataGrid x:Name="hotelsDg" Grid.Row="1" Grid.ColumnSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Регион" Binding="{Binding Region.Name}"/>

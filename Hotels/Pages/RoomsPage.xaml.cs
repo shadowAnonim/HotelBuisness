@@ -1,5 +1,4 @@
 ﻿using Hotels.Data;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,23 +28,23 @@ namespace Hotels.Pages
 
         private void fillDataGrid()
         {
-            List<Room> rooms = Utils.db.Rooms.Include(r => r.Categoty).Include(r => r.Hotel).Include(r => r.State).ToList();
-            roomsDg.ItemsSource = rooms;
+            List<Room> rooms = Utils.db.Rooms.ToList();
+            hotelsDg.ItemsSource = rooms;
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            Room selected = roomsDg.SelectedItem as Room;
+            Hotel selected = hotelsDg.SelectedItem as Hotel;
             if (selected == null)
             {
-                Utils.Error("Выберите комнату");
+                Utils.Error("Выберите отель");
                 return;
             }
-            if (MessageBox.Show("Вы точно хотите удалить эту комнату",
+            if (MessageBox.Show("Вы точно хотите удалить этот отель",
                 "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question)
                 == MessageBoxResult.Yes)
             {
-                Utils.db.Rooms.Remove(selected);
+                Utils.db.Hotels.Remove(selected);
                 Utils.db.SaveChanges();
                 fillDataGrid();
             }
@@ -53,18 +52,18 @@ namespace Hotels.Pages
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RoomPage());
+            NavigationService.Navigate(new HotelPage());
         }
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-            Room selected = roomsDg.SelectedItem as Room;
+            Hotel selected = hotelsDg.SelectedItem as Hotel;
             if (selected == null)
             {
-                Utils.Error("Выберите комнату");
+                Utils.Error("Выберите отель");
                 return;
             }
-            NavigationService.Navigate(new RoomPage(selected));
+            NavigationService.Navigate(new HotelPage(selected));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
