@@ -21,33 +21,51 @@ namespace Hotels.Pages
     /// </summary>
     public partial class RoomPage : Page
     {
-        Hotel hotel;
+        Room room;
         bool edit = false;
-        public RoomPage()
+        public RoomPage(Room room = null)
         {
             InitializeComponent();
-            if (hotel != null)
+            if (room != null)
             {
                 edit = true;
-                this.hotel = hotel;
+                this.room = room;
+                hotelCb.SelectedItem = room.Hotel;
+                stateCb.SelectedItem = room.State;
+                categoryCb.SelectedItem = room.Categoty;
             }
             else
             {
-                this.hotel = new Hotel();
-                int i = 1;
+                this.room = new Room();
+                hotelCb.SelectedIndex = 0;
+                stateCb.SelectedIndex = 0;
+                categoryCb.SelectedIndex = 0;
             }
 
-            main.DataContext = this.hotel;
+            main.DataContext = this.room;
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
+
             if (!edit)
             {
-                Utils.db.Hotels.Add(hotel);
+                if (Utils.db.Rooms.Select(a => a.Name).Contains(nameTb.Text))
+                {
+                    Utils.Error("Такой номер уже существует");
+                    return;
+                }
+                Utils.db.Rooms.Add(room);
             }
             Utils.db.SaveChanges();
             NavigationService.GoBack();
+        }
+
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            hotelCb.ItemsSource = Utils.db.Hotels.ToList();
+            stateCb.ItemsSource = Utils.db.States.ToList();
+            categoryCb.ItemsSource = Utils.db.Categories.ToList();
         }
     }
 }

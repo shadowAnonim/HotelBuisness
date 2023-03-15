@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Hotels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="RoomsPage">
+      Title="RoomsPage" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,12 +23,12 @@
         <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1" Click="editBtn_Click"/>
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" BorderBrush="Red" BorderThickness="3,3,3,3" Click="deleteBtn_Click"/>
         <Button x:Name="bookBtn" Content="Добавить занятость" Grid.Column="4"/>
-        <DataGrid x:Name="hotelsDg" Grid.Row="1" Grid.ColumnSpan="10">
+        <DataGrid x:Name="roomsDg" Grid.Row="1" Grid.ColumnSpan="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="hotel" Binding="{Binding Hotel.Name}"/>
                 <DataGridTextColumn Header="state" Binding="{Binding State.Name}"/>
-                <DataGridTextColumn Header="categoty" Binding="{Binding Category.Name}"/>
+                <DataGridTextColumn Header="category" Binding="{Binding Categoty.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
