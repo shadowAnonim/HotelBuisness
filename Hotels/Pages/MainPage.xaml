@@ -9,12 +9,26 @@
       Title="Главное меню">
 
     <Grid>
-        <StackPanel>
-            <Button x:Name="hotelsBtn" Content="Отели" Click="hotelsBtn_Click"/>
-            <Button x:Name="roomsBtn" Content="Номера" Click="roomsBtn_Click"/>
-            <Button x:Name="guestsBtn" Content="Гости" Click="guestsBtn_Click"/>
-            <Button x:Name="bookingsBtn" Content="Бронирование" Click="bookingsBtn_Click" />
-            <Button x:Name="clientsBtn" Content="Клиенты" Click="clientsBtn_Click" />
+        <StackPanel Orientation="Horizontal">
+            <GroupBox Header="Отели">
+                <StackPanel>
+                    <Button x:Name="hotelsBtn" Content="Отели" Click="hotelsBtn_Click"/>
+                    <Button x:Name="roomsBtn" Content="Номера" Click="roomsBtn_Click"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Бронирование">
+                <StackPanel>
+                    <Button x:Name="guestsBtn" Content="Гости" Click="guestsBtn_Click"/>
+                    <Button x:Name="bookingsBtn" Content="Бронирование" Click="bookingsBtn_Click" />
+                    <Button x:Name="clientsBtn" Content="Клиенты" Click="clientsBtn_Click" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Заезд/Выезд">
+                <StackPanel>
+                    <Button x:Name="arrivalBtn" Content="Оформить заезд" Click="clientsBtn_Click" />
+                    <Button x:Name="departureBtn" Content="оформить выезд" Click="clientsBtn_Click" />
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
     </Grid>
 </Page>

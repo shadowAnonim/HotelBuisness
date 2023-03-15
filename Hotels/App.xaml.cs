@@ -13,5 +13,14 @@ namespace Hotels
     /// </summary>
     public partial class App : Application
     {
+        //modelBuilder
+        //.Entity<Booking>()
+        //.Property(e => e.Total)
+        //.HasConversion<decimal>();
+
+        //modelBuilder
+        //.Entity<Booking>()
+        //.Property(e => e.Accept)
+        //.HasConversion<bool>();
     }
 }
