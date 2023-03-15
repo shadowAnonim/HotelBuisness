@@ -10,4 +10,8 @@ public partial class Guest
     public string? FullName { get; set; }
 
     public string? Phone { get; set; }
+
+    public virtual ICollection<ArrivedGuest> ArrivedGuests { get; } = new List<ArrivedGuest>();
+
+    public virtual ICollection<DeparturedGuest> DeparturedGuests { get; } = new List<DeparturedGuest>();
 }

@@ -21,7 +21,11 @@ public partial class Booking
 
     public bool? Accept { get; set; } = null!;
 
+    public virtual ICollection<Arrive> Arrives { get; } = new List<Arrive>();
+
     public virtual Client Client { get; set; } = null!;
+
+    public virtual ICollection<Departure> Departures { get; } = new List<Departure>();
 
     public virtual Room Room { get; set; } = null!;
 }

@@ -15,9 +15,13 @@ public partial class Room
 
     public long? CategotyId { get; set; }
 
+    public virtual ICollection<Arrive> Arrives { get; } = new List<Arrive>();
+
     public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
 
     public virtual Category? Categoty { get; set; }
+
+    public virtual ICollection<Departure> Departures { get; } = new List<Departure>();
 
     public virtual Hotel? Hotel { get; set; }
 

@@ -15,6 +15,10 @@ public partial class HotelsContext : DbContext
     {
     }
 
+    public virtual DbSet<Arrive> Arrives { get; set; }
+
+    public virtual DbSet<ArrivedGuest> ArrivedGuests { get; set; }
+
     public virtual DbSet<Booking> Bookings { get; set; }
 
     public virtual DbSet<Category> Categories { get; set; }
@@ -22,6 +26,10 @@ public partial class HotelsContext : DbContext
     public virtual DbSet<Client> Clients { get; set; }
 
     public virtual DbSet<ClientType> ClientTypes { get; set; }
+
+    public virtual DbSet<Departure> Departures { get; set; }
+
+    public virtual DbSet<DeparturedGuest> DeparturedGuests { get; set; }
 
     public virtual DbSet<Guest> Guests { get; set; }
 
@@ -39,6 +47,41 @@ public partial class HotelsContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Arrive>(entity =>
+        {
+            entity.ToTable("Arrive");
+
+            entity.HasIndex(e => e.Id, "IX_Arrive_id").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.BookingId).HasColumnName("Booking_id");
+            entity.Property(e => e.Date).HasColumnType("DATETIME");
+            entity.Property(e => e.DepartureDate)
+                .HasColumnType("DATETIME")
+                .HasColumnName("Departure_date");
+            entity.Property(e => e.RoomId).HasColumnName("Room_id");
+
+            entity.HasOne(d => d.Booking).WithMany(p => p.Arrives).HasForeignKey(d => d.BookingId);
+
+            entity.HasOne(d => d.Room).WithMany(p => p.Arrives)
+                .HasForeignKey(d => d.RoomId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<ArrivedGuest>(entity =>
+        {
+            entity.ToTable("Arrived_guest");
+
+            entity.HasIndex(e => e.Id, "IX_Arrived_guest_Id").IsUnique();
+
+            entity.Property(e => e.ArrivalId).HasColumnName("Arrival_id");
+            entity.Property(e => e.GusetId).HasColumnName("Guset_id");
+
+            entity.HasOne(d => d.Arrival).WithMany(p => p.ArrivedGuests).HasForeignKey(d => d.ArrivalId);
+
+            entity.HasOne(d => d.Guset).WithMany(p => p.ArrivedGuests).HasForeignKey(d => d.GusetId);
+        });
+
         modelBuilder.Entity<Booking>(entity =>
         {
             entity.ToTable("Booking");
@@ -100,6 +143,38 @@ public partial class HotelsContext : DbContext
             entity.HasIndex(e => e.Id, "IX_Client_type_Id").IsUnique();
 
             entity.Property(e => e.Name).HasColumnType("VARCHAR (3, 20)");
+        });
+
+        modelBuilder.Entity<Departure>(entity =>
+        {
+            entity.ToTable("Departure");
+
+            entity.HasIndex(e => e.Id, "IX_Departure_id").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.BookingId).HasColumnName("Booking_id");
+            entity.Property(e => e.Date).HasColumnType("DATETIME");
+            entity.Property(e => e.RoomId).HasColumnName("Room_id");
+
+            entity.HasOne(d => d.Booking).WithMany(p => p.Departures).HasForeignKey(d => d.BookingId);
+
+            entity.HasOne(d => d.Room).WithMany(p => p.Departures)
+                .HasForeignKey(d => d.RoomId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<DeparturedGuest>(entity =>
+        {
+            entity.ToTable("Departured_guest");
+
+            entity.HasIndex(e => e.Id, "IX_Departured_guest_id").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.GuestId).HasColumnName("Guest_id");
+
+            entity.HasOne(d => d.Guest).WithMany(p => p.DeparturedGuests)
+                .HasForeignKey(d => d.GuestId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<Guest>(entity =>
