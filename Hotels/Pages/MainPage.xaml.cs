@@ -51,11 +51,14 @@ namespace Hotels.Pages
             NavigationService.Navigate(new ClientsPage());
         }
 
+        private void departuresBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DeparturesPage());
+        }
         private void arrivalBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ArrivalPage());
         }
-
         private void departureBtn_Click(object sender, RoutedEventArgs e)
         {
 
