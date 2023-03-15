@@ -73,7 +73,9 @@ namespace Hotels.Pages
 
         private void hotelCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            roomCb.ItemsSource = Utils.db.Rooms.Where(r => r.Hotel == hotelCb.SelectedItem as Hotel).ToList();
+            Hotel current = hotelCb.SelectedItem as Hotel;
+            List<Room> rooms = Utils.db.Rooms.Where(r => r.Hotel == current).ToList();
+            roomCb.ItemsSource = rooms;
             roomCb.SelectedIndex = 0;
         }
     }

@@ -16,7 +16,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Отель:" Width="75"/>
-                <ComboBox x:Name="hotelCb" SelectedItem="{Binding Room.Hotel, Mode=OneWay}" DisplayMemberPath="Name" SelectionChanged="hotelCb_SelectionChanged"/>
+                <ComboBox x:Name="hotelCb" DisplayMemberPath="Name" SelectionChanged="hotelCb_SelectionChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Номер:" Width="75"/>

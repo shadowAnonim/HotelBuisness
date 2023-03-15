@@ -10,6 +10,21 @@
 
     <Grid>
         <StackPanel>
+            <Label Content="Выезд"/>
+            <ComboBox x:Name="bookingCb">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="Room.Hotel.Name"/>
+                                    <Binding Path="Room.Name"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Выезд:" Width="75"/>
                 <DatePicker x:Name="endDp" SelectedDate="{Binding Date}"/>
