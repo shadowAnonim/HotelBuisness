@@ -30,12 +30,14 @@ namespace Hotels.Pages
             {
                 edit = true;
                 this.booking = booking;
+                roomCb.SelectedItem = booking.Room;
             }
             else
             {
                 this.booking = new Booking();
                 this.booking.ArrivalDate = Utils.DateToBytes(DateTime.Now);
                 this.booking.DepartureDate = Utils.DateToBytes(DateTime.Now.AddDays(1));
+                roomCb.SelectedIndex = 0;
             }
 
             main.DataContext = this.booking;
@@ -62,6 +64,7 @@ namespace Hotels.Pages
         {
             startDp.SelectedDate = Utils.BytesToDate(booking.ArrivalDate);
             endDp.SelectedDate = Utils.BytesToDate(booking.DepartureDate);
+            roomCb.ItemsSource = Utils.db.Rooms.ToList();
         }
     }
 }

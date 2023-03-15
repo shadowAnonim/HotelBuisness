@@ -18,7 +18,7 @@
                 <Label Content="Выезд:" Width="75"/>
                 <DatePicker x:Name="endDp" SelectedDate="{Binding DepartureDateNormal}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+            <StackPanel Orientation="Horizontal">
                 <Label Content="Выезд:" Width="75"/>
                 <ComboBox x:Name="roomCb" SelectedItem="{Binding Room, Mode=TwoWay}" DisplayMemberPath="Name"/>
             </StackPanel>
