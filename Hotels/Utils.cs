@@ -27,5 +27,15 @@ namespace Hotels
         {
             return Regex.IsMatch(input, "^\\+?(\\d{1,3})?[- .]?\\(?(?:\\d{2,3})\\)?[- .]?\\d\\d\\d[- .]?\\d\\d\\d\\d$/");
         }
+
+        public static byte[] DateToBytes(DateTime date)
+        {
+            return BitConverter.GetBytes(date.Ticks);
+        }
+
+        public static DateTime BytesToDate(byte[] bytes)
+        {
+            return new DateTime(BitConverter.ToInt64(bytes, 0));
+        }
     }
 }

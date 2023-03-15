@@ -34,5 +34,10 @@ namespace Hotels.Pages
         {
             NavigationService.Navigate(new RoomsPage());
         }
+
+        private void bookingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new BookingPage(Utils.db.Bookings.First()));
+        }
     }
 }
