@@ -33,5 +33,20 @@ namespace Hotels.Pages
 
             
         }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -7,11 +7,21 @@ public partial class Booking
 {
     public long Id { get; set; }
 
-    public DateTime? ArrivalDate { get; set; }
+    public byte[] ArrivalDate { get; set; } = null!;
 
-    public DateTime? DepartureDate { get; set; }
+    public byte[] DepartureDate { get; set; } = null!;
 
-    public long? RoomId { get; set; }
+    public long RoomId { get; set; }
 
-    public virtual Room? Room { get; set; }
+    public long ClientId { get; set; }
+
+    public byte[] BookingDate { get; set; } = null!;
+
+    public byte[] Total { get; set; } = null!;
+
+    public byte[] Accept { get; set; } = null!;
+
+    public virtual Client Client { get; set; } = null!;
+
+    public virtual Room Room { get; set; } = null!;
 }
