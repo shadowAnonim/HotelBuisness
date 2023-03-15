@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Hotels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="GuestsPage">
+      Title="GuestsPage" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" BorderBrush="Red" BorderThickness="3,3,3,3" Click="deleteBtn_Click"/>
         <DataGrid x:Name="guestsDg" Grid.Row="1" Grid.ColumnSpan="10">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="full_name" Binding="{Binding Full_name}"/>
+                <DataGridTextColumn Header="full_name" Binding="{Binding FullName}"/>
                 <DataGridTextColumn Header="phone" Binding="{Binding Phone}"/>
             </DataGrid.Columns>
         </DataGrid>

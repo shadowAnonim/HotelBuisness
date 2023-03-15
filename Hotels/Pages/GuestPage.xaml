@@ -8,7 +8,17 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GuestPage">
 
-    <Grid>
-        
+    <Grid x:Name="main">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Width="150" Content="ФИО"/>
+                <TextBox x:Name="fullNameTb" Text="{Binding FullName, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Width="150" Content="Номер телефона"/>
+                <TextBox x:Name="phoneTb" Text="{Binding Phone, Mode=TwoWay}"/>
+            </StackPanel>
+            <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
+        </StackPanel>
     </Grid>
 </Page>
