@@ -7,15 +7,17 @@ public partial class Room
 {
     public long Id { get; set; }
 
-    public byte[]? Booked { get; set; }
-
     public long? StateId { get; set; }
 
     public long? HotelId { get; set; }
 
-    public byte[]? Price { get; set; }
+    public string? Name { get; set; }
+
+    public long? CategotyId { get; set; }
 
     public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
+
+    public virtual Category? Categoty { get; set; }
 
     public virtual Hotel? Hotel { get; set; }
 

@@ -1,5 +1,4 @@
 ﻿using Hotels.Data;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,18 +17,18 @@ using System.Windows.Shapes;
 namespace Hotels.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для HotelsPage.xaml
+    /// Логика взаимодействия для RoomsPage.xaml
     /// </summary>
-    public partial class HotelsPage : Page
+    public partial class RoomsPage : Page
     {
-        public HotelsPage()
+        public RoomsPage()
         {
             InitializeComponent();
         }
 
         private void fillDataGrid()
         {
-            List<Hotel> hotels = Utils.db.Hotels.Include(h => h.Region).ToList();
+            List<Hotel> hotels = Utils.db.Hotels.ToList();
             hotelsDg.ItemsSource = hotels;
         }
 

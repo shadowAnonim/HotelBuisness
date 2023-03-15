@@ -1,5 +1,4 @@
 ﻿using Hotels.Data;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,25 +17,24 @@ using System.Windows.Shapes;
 namespace Hotels.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для HotelPage.xaml
+    /// Логика взаимодействия для RoomPage.xaml
     /// </summary>
-    public partial class HotelPage : Page
+    public partial class RoomPage : Page
     {
         Hotel hotel;
         bool edit = false;
-        public HotelPage(Hotel hotel = null)
+        public RoomPage()
         {
             InitializeComponent();
             if (hotel != null)
             {
                 edit = true;
                 this.hotel = hotel;
-                regionCb.SelectedItem = hotel.Region;
             }
             else
             {
                 this.hotel = new Hotel();
-                regionCb.SelectedIndex = 0;
+                int i = 1;
             }
 
             main.DataContext = this.hotel;
@@ -50,11 +48,6 @@ namespace Hotels.Pages
             }
             Utils.db.SaveChanges();
             NavigationService.GoBack();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            regionCb.ItemsSource = Utils.db.Regions.ToList();
         }
     }
 }
