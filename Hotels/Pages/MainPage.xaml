@@ -9,6 +9,9 @@
       Title="Главное меню">
 
     <Grid>
-        <Button x:Name="hotelsBtn" Content="Отели" Click="hotelsBtn_Click"/>
+        <StackPanel>
+            <Button x:Name="hotelsBtn" Content="Отели" Click="hotelsBtn_Click"/>
+            <Button x:Name="roomsBtn" Content="Комнаты" Click="roomsBtn_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

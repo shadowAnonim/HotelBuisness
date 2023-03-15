@@ -29,5 +29,10 @@ namespace Hotels.Pages
         {
             NavigationService.Navigate(new HotelsPage());
         }
+
+        private void roomsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RoomsPage());
+        }
     }
 }

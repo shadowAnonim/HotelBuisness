@@ -28,8 +28,8 @@ namespace Hotels.Pages
 
         private void fillDataGrid()
         {
-            List<Hotel> hotels = Utils.db.Hotels.ToList();
-            hotelsDg.ItemsSource = hotels;
+            List<Room> rooms = Utils.db.Rooms.ToList();
+            hotelsDg.ItemsSource = rooms;
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
