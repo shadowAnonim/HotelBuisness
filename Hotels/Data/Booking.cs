@@ -7,9 +7,9 @@ public partial class Booking
 {
     public long Id { get; set; }
 
-    public DateTime? ArrivalDate { get; set; }
+    public byte[]? ArrivalDate { get; set; }
 
-    public DateTime? DepartureDate { get; set; }
+    public byte[]? DepartureDate { get; set; }
 
     public long? RoomId { get; set; }
 

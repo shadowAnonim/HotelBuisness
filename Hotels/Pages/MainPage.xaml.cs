@@ -1,5 +1,4 @@
-﻿using Hotels.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,9 +37,7 @@ namespace Hotels.Pages
 
         private void bookingsBtn_Click(object sender, RoutedEventArgs e)
         {
-            Booking b = (Utils.db.Bookings.Skip(Utils.x).First();
-            NavigationService.Navigate(new BookingPage(b));
-            Utils.x++;
+            NavigationService.Navigate(new BookingPage(Utils.db.Bookings.First()));
         }
     }
 }
