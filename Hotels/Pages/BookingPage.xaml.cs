@@ -35,8 +35,8 @@ namespace Hotels.Pages
             else
             {
                 this.booking = new Booking();
-                this.booking.ArrivalDate = Utils.DateToBytes(DateTime.Now);
-                this.booking.DepartureDate = Utils.DateToBytes(DateTime.Now.AddDays(1));
+                this.booking.ArrivalDate = DateTime.Now;
+                this.booking.DepartureDate = DateTime.Now.AddDays(1);
                 roomCb.SelectedIndex = 0;
             }
 
@@ -50,8 +50,8 @@ namespace Hotels.Pages
                 Utils.Error("Дата выезда должна быть позже даты заезда");
                 return;
             }
-            booking.ArrivalDate = Utils.DateToBytes(startDp.SelectedDate.Value);
-            booking.DepartureDate = Utils.DateToBytes(endDp.SelectedDate.Value);
+            booking.ArrivalDate = startDp.SelectedDate.Value;
+            booking.DepartureDate = endDp.SelectedDate.Value;
             if (!edit)
             {
                 Utils.db.Bookings.Add(booking);
@@ -62,8 +62,8 @@ namespace Hotels.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            startDp.SelectedDate = Utils.BytesToDate(booking.ArrivalDate);
-            endDp.SelectedDate = Utils.BytesToDate(booking.DepartureDate);
+            startDp.SelectedDate = booking.ArrivalDate;
+            endDp.SelectedDate = booking.DepartureDate;
             roomCb.ItemsSource = Utils.db.Rooms.ToList();
         }
     }
