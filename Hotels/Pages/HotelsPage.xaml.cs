@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -70,6 +71,17 @@ namespace Hotels.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             fillDataGrid();
+        }
+
+        private void roomsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Hotel selected = hotelsDg.SelectedItem as Hotel;
+            if (selected == null)
+            {
+                Utils.Error("Выберите отель");
+                return;
+            }
+            NavigationService.Navigate(new RoomsPage(selected));
         }
     }
 }

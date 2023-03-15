@@ -22,14 +22,25 @@ namespace Hotels.Pages
     /// </summary>
     public partial class RoomsPage : Page
     {
-        public RoomsPage()
+        Hotel hotel;
+        public RoomsPage(Hotel hotel = null)
         {
             InitializeComponent();
+            this.hotel = hotel;
         }
 
         private void fillDataGrid()
         {
-            List<Room> rooms = Utils.db.Rooms.Include(r => r.Categoty).Include(r => r.Hotel).Include(r => r.State).ToList();
+            List<Room> rooms = new List<Room>();
+            
+            if (hotel != null)
+            {
+                rooms = Utils.db.Rooms.Include(r => r.Categoty).Include(r => r.Hotel).Include(r => r.State).Where(a => a.Hotel == this.hotel).ToList();
+            }
+            else
+            {
+                rooms = Utils.db.Rooms.Include(r => r.Categoty).Include(r => r.Hotel).Include(r => r.State).ToList();
+            }
             roomsDg.ItemsSource = rooms;
         }
 

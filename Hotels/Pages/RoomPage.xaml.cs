@@ -21,9 +21,10 @@ namespace Hotels.Pages
     /// </summary>
     public partial class RoomPage : Page
     {
+        Hotel hotel;
         Room room;
         bool edit = false;
-        public RoomPage(Room room = null)
+        public RoomPage(Room room = null, Hotel hotel = null)
         {
             InitializeComponent();
             if (room != null)
@@ -43,6 +44,7 @@ namespace Hotels.Pages
             }
 
             main.DataContext = this.room;
+            this.hotel = hotel;
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
