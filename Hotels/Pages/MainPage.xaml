@@ -27,6 +27,7 @@
                 <StackPanel>
                     <Button x:Name="arrivalBtn" Content="Оформить заезд" Click="arrivalBtn_Click" />
                     <Button x:Name="departureBtn" Content="Оформить выезд" Click="departureBtn_Click" />
+                    <Button x:Name="vdepartureBtn" Content="Постмотреть выезды" Click="vdepartureBtn_Click" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
