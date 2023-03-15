@@ -6,13 +6,13 @@
       xmlns:local="clr-namespace:Hotels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ArrivalPage" Loaded="Page_Loaded">
+      Title="Оформление заезда" Loaded="Page_Loaded">
 
     <Grid x:Name="main">
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Width="100" Content="Бронирование:"/>
-                <ComboBox x:Name="bookingCb">
+                <ComboBox x:Name="bookingCb" SelectionChanged="bookingCb_SelectionChanged" SelectedItem="{Binding Booking}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock>
@@ -30,7 +30,7 @@
             <Button x:Name="newBtn" Content="Оформить без бронирования" Width="200"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Отель:" Width="100"/>
-                <ComboBox x:Name="hotelCb" SelectedItem="{Binding Room.Hotel, Mode=OneWay}" DisplayMemberPath="Name" SelectionChanged="hotelCb_SelectionChanged"/>
+                <ComboBox x:Name="hotelCb" DisplayMemberPath="Name" SelectionChanged="hotelCb_SelectionChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Номер:" Width="100"/>
@@ -38,12 +38,12 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Выезд:" Width="100"/>
-                <DatePicker x:Name="endDp" SelectedDate="{Binding DepartureDate}"/>
+                <DatePicker x:Name="endDp" SelectedDate="{Binding DepartureDate, Mode=TwoWay}"/>
             </StackPanel>
             <DataGrid x:Name="guestsDg" Grid.Row="1" Grid.ColumnSpan="10">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}"/>
-                    <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>
+                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName, Mode=TwoWay}"/>
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding Phone, Mode=TwoWay}"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal">
