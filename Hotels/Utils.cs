@@ -13,6 +13,8 @@ namespace Hotels
     {
         public static HotelsContext db = new HotelsContext();
 
+        public static int x = 0;
+
         public static void Error(string message)
         {
             MessageBox.Show(message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -35,7 +37,15 @@ namespace Hotels
 
         public static DateTime BytesToDate(byte[] bytes)
         {
-            return new DateTime(BitConverter.ToInt64(bytes, 0));
+            try
+            {
+                long a = BitConverter.ToInt64(bytes, 0);
+                return new DateTime(1980, 1, 1).AddMicroseconds(a);
+            }
+            catch (Exception e)
+            {
+                return DateTime.Now;
+            }
         }
     }
 }
