@@ -9,19 +9,6 @@
       Title="DeparturePage">
 
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Выезд:" Width="75"/>
-                <DatePicker x:Name="endDp" SelectedDate="{Binding Date}"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Номер:" Width="75"/>
-                <ComboBox x:Name="roomCb" SelectedItem="{Binding Room, Mode=TwoWay}" DisplayMemberPath="Name"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Номер:" Width="75"/>
-                <ComboBox x:Name="Бронь" SelectedItem="{Binding Booking, Mode=TwoWay}" DisplayMemberPath="Name"/>
-            </StackPanel>
-        </StackPanel>
+        
     </Grid>
 </Page>
