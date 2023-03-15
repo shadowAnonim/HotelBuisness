@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hotels.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,40 @@ namespace Hotels.Pages
     /// </summary>
     public partial class ClientPage : Page
     {
-        public ClientPage()
+        Client client;
+        bool edit = false;
+
+        public ClientPage(Client client = null)
         {
             InitializeComponent();
+            if (client != null)
+            {
+                edit = true;
+                this.client = client;
+                typeCb.SelectedItem = client.Type;
+            }
+            else
+            {
+                this.client = new Client();
+                typeCb.SelectedIndex = 0;
+            }
+
+            main.DataContext = this.client;
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!edit)
+            {
+                Utils.db.Clients.Add(client);
+            }
+            Utils.db.SaveChanges();
+            NavigationService.GoBack();
+        }
+        
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            typeCb.ItemsSource = Utils.db.ClientTypes.ToList();
         }
     }
 }

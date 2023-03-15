@@ -25,7 +25,6 @@ namespace Hotels.Pages
         public ClientsPage()
         {
             InitializeComponent();
-            fillDataGrid();
         }
 
         private void fillDataGrid()
@@ -36,17 +35,41 @@ namespace Hotels.Pages
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ClientPage());
         }
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Client selected = clientsDg.SelectedItem as Client;
+            if (selected == null)
+            {
+                Utils.Error("Выберите клиента");
+                return;
+            }
+            NavigationService.Navigate(new ClientPage(selected));
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
+            Client selected = clientsDg.SelectedItem as Client;
+            if (selected == null)
+            {
+                Utils.Error("Выберите клиента");
+                return;
+            }
+            if (MessageBox.Show("Вы точно хотите удалить этого клиента",
+                "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question)
+                == MessageBoxResult.Yes)
+            {
+                Utils.db.Clients.Remove(selected);
+                Utils.db.SaveChanges();
+                fillDataGrid();
+            }
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            fillDataGrid();
         }
     }
 }

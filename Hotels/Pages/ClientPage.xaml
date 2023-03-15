@@ -6,9 +6,19 @@
       xmlns:local="clr-namespace:Hotels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientPage">
+      Title="ClientPage" Loaded="PageLoaded">
 
-    <Grid>
-        
+    <Grid x:Name="main">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="ФИО:" Width="75"/>
+                <TextBox x:Name="nameTb" Text="{Binding ClientName, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Вид" Width="75"/>
+                <ComboBox x:Name="typeCb" SelectedItem="{Binding Type, Mode=TwoWay}" DisplayMemberPath="Name"/>
+            </StackPanel>
+            <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click" />
+        </StackPanel>
     </Grid>
 </Page>
