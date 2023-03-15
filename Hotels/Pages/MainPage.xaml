@@ -25,8 +25,8 @@
             </GroupBox>
             <GroupBox Header="Заезд/Выезд">
                 <StackPanel>
-                    <Button x:Name="arrivalBtn" Content="Оформить заезд" Click="arrivalBtn_Click" />
-                    <Button x:Name="departureBtn" Content="Оформить выезд" Click="departureBtn_Click" />
+                    <Button x:Name="arrivalBtn" Content="Оформить заезд" Click="clientsBtn_Click" />
+                    <Button x:Name="departureBtn" Content="Оформить выезд" Click="clientsBtn_Click" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
