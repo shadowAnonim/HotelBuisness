@@ -89,8 +89,7 @@ namespace Hotels.Pages
                 Room category = (roomCb.SelectedItem as Room);
                 long? category1 = category.CategotyId;
                 Hotel hotel = hotelCb.SelectedItem as Hotel;
-                RoomPrice prices = Utils.db.RoomPrices.Include(p => p.Hotel).
-                    FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
+                RoomPrice prices = Aboba().FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
                 sumDp.Text = prices.Price.ToString();
                 totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
             }
