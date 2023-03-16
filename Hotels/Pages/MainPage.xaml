@@ -34,6 +34,7 @@
             <GroupBox Header="Цены">
                 <StackPanel>
                     <Button x:Name="priceBtn" Content="Прайс-лист" Click="priceBtn_Click" />
+                    <Button x:Name="historyBtn" Content="История цен" Click="historyBtn_Click" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>

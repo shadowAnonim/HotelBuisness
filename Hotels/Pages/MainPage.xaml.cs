@@ -76,5 +76,10 @@ namespace Hotels.Pages
         {
             NavigationService.Navigate(new PricePage());
         }
+
+        private void historyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PricesPage());
+        }
     }
 }
