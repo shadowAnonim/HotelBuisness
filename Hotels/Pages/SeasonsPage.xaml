@@ -24,8 +24,8 @@
         <DataGrid x:Name="roomsDg" Grid.Row="1" Grid.ColumnSpan="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Отель" Binding="{Binding Hotel.Name}"/>
-                <DataGridTextColumn Header="Начало" Binding="{Binding StartDate}"/>
-                <DataGridTextColumn Header="Конец" Binding="{Binding EndDate}"/>
+                <DataGridTextColumn Header="Начало" Binding="{Binding StartDate, StringFormat=\{0:dd.MM\}}"/>
+                <DataGridTextColumn Header="Конец" Binding="{Binding EndDate, StringFormat=\{0:dd.MM\}}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

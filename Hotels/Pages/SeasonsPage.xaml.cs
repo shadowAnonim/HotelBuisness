@@ -35,13 +35,13 @@ namespace Hotels.Pages
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            Room selected = roomsDg.SelectedItem as Room;
+            DeadSeason selected = roomsDg.SelectedItem as DeadSeason;
             if (selected == null)
             {
-                Utils.Error("Выберите комнату");
+                Utils.Error("Выберите сезон");
                 return;
             }
-            if (MessageBox.Show("Вы точно хотите удалить эту комнату",
+            if (MessageBox.Show("Вы точно хотите удалить этот сезон",
                 "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question)
                 == MessageBoxResult.Yes)
             {
