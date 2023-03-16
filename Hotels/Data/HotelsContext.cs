@@ -27,9 +27,13 @@ public partial class HotelsContext : DbContext
 
     public virtual DbSet<ClientType> ClientTypes { get; set; }
 
+    public virtual DbSet<DeadSeason> DeadSeasons { get; set; }
+
     public virtual DbSet<Departure> Departures { get; set; }
 
     public virtual DbSet<DeparturedGuest> DeparturedGuests { get; set; }
+
+    public virtual DbSet<Direction> Directions { get; set; }
 
     public virtual DbSet<Guest> Guests { get; set; }
 
@@ -147,6 +151,21 @@ public partial class HotelsContext : DbContext
             entity.Property(e => e.Name).HasColumnType("VARCHAR (3, 20)");
         });
 
+        modelBuilder.Entity<DeadSeason>(entity =>
+        {
+            entity.ToTable("DeadSeason");
+
+            entity.HasIndex(e => e.Id, "IX_DeadSeason_Id").IsUnique();
+
+            entity.Property(e => e.EndDate).HasColumnType("DATETIME");
+            entity.Property(e => e.HotelId).HasColumnName("Hotel_id");
+            entity.Property(e => e.StartDate).HasColumnType("DATETIME");
+
+            entity.HasOne(d => d.Hotel).WithMany(p => p.DeadSeasons)
+                .HasForeignKey(d => d.HotelId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
         modelBuilder.Entity<Departure>(entity =>
         {
             entity.ToTable("Departure");
@@ -184,6 +203,15 @@ public partial class HotelsContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
+        modelBuilder.Entity<Direction>(entity =>
+        {
+            entity.ToTable("Direction");
+
+            entity.HasIndex(e => e.Id, "IX_Direction_Id").IsUnique();
+
+            entity.Property(e => e.Name).HasColumnType("VARCHAR (2, 20)");
+        });
+
         modelBuilder.Entity<Guest>(entity =>
         {
             entity.ToTable("Guest");
@@ -202,10 +230,17 @@ public partial class HotelsContext : DbContext
 
             entity.HasIndex(e => e.Id, "IX_Hotel_Id").IsUnique();
 
+            entity.Property(e => e.DirectionId).HasColumnName("Direction_id");
             entity.Property(e => e.Name).HasColumnType("VARCHAR (3, 30)");
             entity.Property(e => e.RegionId).HasColumnName("Region_id");
 
-            entity.HasOne(d => d.Region).WithMany(p => p.Hotels).HasForeignKey(d => d.RegionId);
+            entity.HasOne(d => d.Direction).WithMany(p => p.Hotels)
+                .HasForeignKey(d => d.DirectionId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            entity.HasOne(d => d.Region).WithMany(p => p.Hotels)
+                .HasForeignKey(d => d.RegionId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<Region>(entity =>
@@ -264,6 +299,7 @@ public partial class HotelsContext : DbContext
             entity.Property(e => e.Name).HasColumnType("VARCHAR (2, 15)");
         });
 
+        OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

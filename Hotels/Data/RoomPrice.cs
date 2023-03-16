@@ -9,11 +9,11 @@ public partial class RoomPrice
 
     public long HotelId { get; set; }
 
-    public DateTime? Date { get; set; } = null!;
+    public byte[] Date { get; set; } = null!;
 
     public long CategoryId { get; set; }
 
-    public decimal? Price { get; set; } = null!;
+    public byte[] Price { get; set; } = null!;
 
     public virtual Category Category { get; set; } = null!;
 
