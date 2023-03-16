@@ -37,11 +37,6 @@
                     <Button x:Name="historyBtn" Content="История цен" Click="historyBtn_Click" />
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Скидки">
-                <StackPanel>
-                    <Button x:Name="" Content="Прайс-лист" Click="priceBtn_Click" />
-                </StackPanel>
-            </GroupBox>
         </StackPanel>
     </Grid>
 </Page>

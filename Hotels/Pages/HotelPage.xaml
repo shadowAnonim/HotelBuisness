@@ -17,10 +17,6 @@
                 <Label Content="Название:" Width="75"/>
                 <ComboBox x:Name="regionCb" SelectedItem="{Binding Region, Mode=TwoWay}" DisplayMemberPath="Name"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Название:" Width="75"/>
-                <ComboBox x:Name="directionCb" SelectedItem="{Binding Direction, Mode=TwoWay}" DisplayMemberPath="Name"/>
-            </StackPanel>
             <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
         </StackPanel>
     </Grid>
