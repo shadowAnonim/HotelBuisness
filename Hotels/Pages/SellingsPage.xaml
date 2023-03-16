@@ -1,0 +1,45 @@
+﻿<Page x:Class="Hotels.Pages.SellingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hotels.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Анализ эффективности продаж">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Дата:"/>
+            <DatePicker x:Name="datePk"/>
+            <Label Content="Отель"/>
+            <ComboBox x:Name="hotelsCb"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Количество проданных ночей" Width="200"/>
+                <Label x:Name="nightsLb" Width="75"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Общая сумма продаж" Width="200"/>
+                <Label x:Name="totalLb" Width="75"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <Label Content="% Загрузка номерного фонда" Width="200"/>
+                <Label x:Name="zagruzLb" Width="75"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Ср. цена ADR" Width="200"/>
+                <Label x:Name="adrLb" Width="75"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="PevPar" Width="200"/>
+                <Label x:Name="pevLb" Width="75"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
