@@ -15,6 +15,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,10 +23,12 @@
         </Grid.RowDefinitions>
         <Button x:Name="addBtn" Content="Добавить" Grid.Column="0" Click="addBtn_Click"/>
         <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1" Click="editBtn_Click"/>
+        <Button x:Name="acceptBtn" Content="Подтвердить" Grid.Column="3" Click="acceptBtn_Click"/>
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" BorderBrush="Red" BorderThickness="3,3,3,3" Click="deleteBtn_Click" Margin="0,0,0,10" VerticalAlignment="Bottom"/>
         <DataGrid x:Name="hotelsDg" Grid.Row="1" Grid.ColumnSpan="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата бронирования" Binding="{Binding BookingDate}"/>
+                <DataGridCheckBoxColumn Header="Подтверждено" Binding="{Binding Accept}"/>
                 <DataGridTextColumn Header="Заказачик" Binding="{Binding Client.ClientName}"/>
                 <DataGridTextColumn Header="Отель" Binding="{Binding Room.Hotel.Name}"/>
                 <DataGridTextColumn Header="Номер" Binding="{Binding Room.Name}"/>

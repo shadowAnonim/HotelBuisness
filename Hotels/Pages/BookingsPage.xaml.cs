@@ -59,17 +59,17 @@ namespace Hotels.Pages
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            Hotel selected = hotelsDg.SelectedItem as Hotel;
+            Booking selected = hotelsDg.SelectedItem as Booking;
             if (selected == null)
             {
-                Utils.Error("Выберите элемент");
+                Utils.Error("Выберите запись");
                 return;
             }
-            if (MessageBox.Show("Вы точно хотите удалить этот отель",
+            if (MessageBox.Show("Вы точно хотите удалить эту запись?",
                 "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question)
                 == MessageBoxResult.Yes)
             {
-                Utils.db.Hotels.Remove(selected);
+                Utils.db.Bookings.Remove(selected);
                 Utils.db.SaveChanges();
                 fillDataGrid();
             }
@@ -77,6 +77,24 @@ namespace Hotels.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            fillDataGrid();
+        }
+
+        private void acceptBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Booking selected = hotelsDg.SelectedItem as Booking;
+            if (selected == null)
+            {
+                Utils.Error("Выберите запись");
+                return;
+            }
+            if (selected.Accept.Value)
+            {
+                Utils.Error("Уже подтверждено");
+                return;
+            }
+            selected.Accept = true;
+            Utils.db.SaveChanges();
             fillDataGrid();
         }
     }

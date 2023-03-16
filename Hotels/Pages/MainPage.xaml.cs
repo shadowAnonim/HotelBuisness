@@ -91,5 +91,10 @@ namespace Hotels.Pages
         {
             NavigationService.Navigate(new SellingsPage());
         }
+
+        private void nightsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new NightsPage());
+        }
     }
 }
