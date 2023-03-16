@@ -42,6 +42,13 @@
                     <Button x:Name="discountBtn" Content="Мёртвые сезоны" Click="discountBtn_Click" />
                 </StackPanel>
             </GroupBox>
+            <GroupBox Header="Аналитика">
+                <StackPanel>
+                    <Button x:Name="reportBtn" Content="Мёртвые сезоны" Click="discountBtn_Click" />
+                    <Button x:Name="nightsBtn" Content="Мёртвые сезоны" Click="discountBtn_Click" />
+                    <Button x:Name="nightsReportBtn" Content="Мёртвые сезоны" Click="discountBtn_Click" />
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
     </Grid>
 </Page>
