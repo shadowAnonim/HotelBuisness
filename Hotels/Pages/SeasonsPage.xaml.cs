@@ -45,7 +45,7 @@ namespace Hotels.Pages
                 "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question)
                 == MessageBoxResult.Yes)
             {
-                //Utils.db.Rooms.Remove(selected);
+                Utils.db.DeadSeasons.Remove(selected);
                 Utils.db.SaveChanges();
                 fillDataGrid();
             }
@@ -53,18 +53,18 @@ namespace Hotels.Pages
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RoomPage());
+            NavigationService.Navigate(new SeasonPage());
         }
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-            Room selected = roomsDg.SelectedItem as Room;
+            DeadSeason selected = roomsDg.SelectedItem as DeadSeason;
             if (selected == null)
             {
-                Utils.Error("Выберите комнату");
+                Utils.Error("Выберите сезон");
                 return;
             }
-            NavigationService.Navigate(new RoomPage(selected));
+            NavigationService.Navigate(new SeasonPage(selected));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

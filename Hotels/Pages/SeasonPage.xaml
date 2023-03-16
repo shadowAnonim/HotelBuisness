@@ -1,0 +1,28 @@
+﻿<Page x:Class="Hotels.Pages.SeasonPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hotels.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Мёртвый сезон" Loaded="Page_Loaded">
+
+    <Grid x:Name="main">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Начало:" Width="75"/>
+                <DatePicker x:Name="startDp" SelectedDate="{Binding StartDate, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Конец:" Width="75"/>
+                <DatePicker x:Name="endDp" SelectedDate="{Binding EndDate, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Width="75" Content="Отель:"/>
+                <ComboBox x:Name="hotelCb" SelectedItem="{Binding Hotel, Mode=TwoWay}" DisplayMemberPath="Name"/>
+            </StackPanel>
+            <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
