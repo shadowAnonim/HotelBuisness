@@ -39,7 +39,7 @@
             </GroupBox>
             <GroupBox Header="Скидки">
                 <StackPanel>
-                    <Button x:Name="discountBtn" Content="Мёртвые сзезоны" Click="priceBtn_Click" />
+                    <Button x:Name="discountBtn" Content="Мёртвые сезоны" Click="discountBtn_Click" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>
