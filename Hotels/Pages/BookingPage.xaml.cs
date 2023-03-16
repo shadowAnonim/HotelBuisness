@@ -77,7 +77,7 @@ namespace Hotels.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             clientCb.ItemsSource = Utils.db.Clients.ToList();
-            hotelCb.ItemsSource = Utils.db.Hotels.ToList();
+            hotelCb.ItemsSource = Utils.db.Hotels.Include(h => h.Direction).ToList();
             Hotel currHotel = hotelCb.SelectedItem as Hotel;
             roomCb.ItemsSource = Utils.db.Rooms.Include(r => r.Categoty).Where(r => r.Hotel == currHotel).ToList();
             roomCb.SelectedIndex = 0;
@@ -151,11 +151,15 @@ namespace Hotels.Pages
                 Hotel hotel = hotelCb.SelectedItem as Hotel;
                 RoomPrice prices = Aboba().FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
                 sumDp.Text = prices.Price.ToString();
-                totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
-            }
-            catch (FormatException)
-            {
-                Utils.Error("Неверный формат цены");
+                if (decimal.TryParse(sumDp.Text, out decimal x))
+                {
+                    totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
+                }
+                else
+                {
+                    Utils.Error("Неверный формат цены");
+                }
+                discountLbl.Content = $"Скидка: {CalculateDiscount()}";
             }
             catch (Exception ex)
             {
