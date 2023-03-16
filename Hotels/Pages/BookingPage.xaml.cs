@@ -50,13 +50,22 @@ namespace Hotels.Pages
             main.DataContext = this.booking;
         }
 
-        private void saveBtn_Click(object sender, RoutedEventArgs e)
-        { 
+        private bool DateValidation()
+        {
             if (endDp.SelectedDate.Value.Date <= startDp.SelectedDate.Value.Date)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!DateValidation())
             {
                 Utils.Error("Дата выезда должна быть позже даты заезда");
                 return;
-            }
+            }  
             if (!edit)
             {
                 Utils.db.Bookings.Add(booking);
@@ -77,8 +86,28 @@ namespace Hotels.Pages
             sumDp.SelectionChanged += sumDp_SelectionChanged;
         }
 
+        private long CalculateDiscount()
+        {
+            Hotel current = hotelCb.SelectedItem as Hotel;
+            List<DeadSeason> seasons = Utils.db.DeadSeasons.Include(s => s.Hotel).ToList();
+            foreach (DeadSeason season in seasons)
+            {
+                if (season.StartDate.Value >= startDp.SelectedDate.Value && season.EndDate.Value
+                    <= endDp.SelectedDate.Value && season.Hotel == current)
+                {
+                    return 20;
+                }
+            }
+            return current.Direction.Discount;
+        }
+
         private void hotelCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!DateValidation())
+            {
+                Utils.Error("Дата выезда должна быть позже даты заезда");
+                return;
+            }
             Hotel current = hotelCb.SelectedItem as Hotel;
             List<Room> rooms = Utils.db.Rooms.Where(r => r.Hotel == current).ToList();
             roomCb.ItemsSource = rooms;
@@ -91,11 +120,15 @@ namespace Hotels.Pages
                 Hotel hotel = hotelCb.SelectedItem as Hotel;
                 RoomPrice prices = Aboba().FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
                 sumDp.Text = prices.Price.ToString();
-                totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
-            }
-            catch (FormatException)
-            {
-                Utils.Error("Неверный формат цены");
+                if (decimal.TryParse(sumDp.Text, out decimal x))
+                {
+                    totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
+                }
+                else
+                {
+                    Utils.Error("Неверный формат цены");
+                }
+                discountLbl.Content = $"Скидка: {CalculateDiscount()}";
             }
             catch (Exception ex)
             {
@@ -105,6 +138,11 @@ namespace Hotels.Pages
 
         private void Dp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!DateValidation())
+            {
+                Utils.Error("Дата выезда должна быть позже даты заезда");
+                return;
+            }
             try
             {
                 TimeSpan days = endDp.SelectedDate.Value - startDp.SelectedDate.Value;
@@ -127,7 +165,12 @@ namespace Hotels.Pages
 
         private void sumDp_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if(sumDp.Text == "")
+            if (!DateValidation())
+            {
+                Utils.Error("Дата выезда должна быть позже даты заезда");
+                return;
+            }
+            if (sumDp.Text == "")
             {
                 sumDp.Text = "0";
             }

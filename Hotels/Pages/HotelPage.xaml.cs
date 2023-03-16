@@ -32,11 +32,13 @@ namespace Hotels.Pages
                 edit = true;
                 this.hotel = hotel;
                 regionCb.SelectedItem = hotel.Region;
+                directionCb.SelectedItem = hotel.Direction;
             }
             else
             {
                 this.hotel = new Hotel();
                 regionCb.SelectedIndex = 0;
+                directionCb.SelectedIndex = 0;
             }
 
             main.DataContext = this.hotel;
@@ -55,6 +57,7 @@ namespace Hotels.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             regionCb.ItemsSource = Utils.db.Regions.ToList();
+            directionCb.ItemsSource = Utils.db.Directions.ToList();
         }
     }
 }

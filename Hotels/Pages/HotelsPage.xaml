@@ -29,6 +29,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Регион" Binding="{Binding Region.Name}"/>
+                <DataGridTextColumn Header="Напрвление" Binding="{Binding Direction.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

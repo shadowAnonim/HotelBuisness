@@ -30,7 +30,7 @@ namespace Hotels.Pages
 
         private void fillDataGrid()
         {
-            List<Hotel> hotels = Utils.db.Hotels.Include(h => h.Region).ToList();
+            List<Hotel> hotels = Utils.db.Hotels.Include(h => h.Region).Include(h => h.Direction).ToList();
             hotelsDg.ItemsSource = hotels;
         }
 
