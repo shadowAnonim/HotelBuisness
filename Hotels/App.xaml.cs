@@ -22,5 +22,12 @@ namespace Hotels
         //.Entity<Booking>()
         //.Property(e => e.Accept)
         //.HasConversion<bool>();
+        //OnModelCreatingPartial(modelBuilder);
+
+        //modelBuilder
+        //.Entity<RoomPrice>()
+        //.Property(e => e.Price)
+        //.HasConversion<decimal>();
+        //OnModelCreatingPartial(modelBuilder);
     }
 }

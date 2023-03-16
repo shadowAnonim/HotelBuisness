@@ -263,22 +263,7 @@ public partial class HotelsContext : DbContext
 
             entity.Property(e => e.Name).HasColumnType("VARCHAR (2, 15)");
         });
-        modelBuilder
-        .Entity<Booking>()
-        .Property(e => e.Total)
-        .HasConversion<decimal>();
 
-        modelBuilder
-        .Entity<Booking>()
-        .Property(e => e.Accept)
-        .HasConversion<bool>();
-        OnModelCreatingPartial(modelBuilder);
-
-        modelBuilder
-        .Entity<RoomPrice>()
-        .Property(e => e.Price)
-        .HasConversion<decimal>();
-        OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
