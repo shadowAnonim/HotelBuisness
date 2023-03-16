@@ -74,7 +74,7 @@ namespace Hotels.Pages
             roomCb.SelectedIndex = 0;
             endDp.SelectedDateChanged += Dp_SelectionChanged;
             startDp.SelectedDateChanged += Dp_SelectionChanged;
-            
+            sumDp.SelectionChanged += sumDp_SelectionChanged;
         }
 
         private void hotelCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -94,7 +94,11 @@ namespace Hotels.Pages
                 sumDp.Text = prices.Price.ToString();
                 totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
             }
-            catch(Exception ex)
+            catch (FormatException)
+            {
+                Utils.Error("Неверный формат цены");
+            }
+            catch (Exception ex)
             {
                 Utils.Error(ex.Message);
             }
@@ -108,10 +112,13 @@ namespace Hotels.Pages
                 Room category = (roomCb.SelectedItem as Room);
                 long? category1 = category.CategotyId;
                 Hotel hotel = hotelCb.SelectedItem as Hotel;
-                RoomPrice prices = Utils.db.RoomPrices.Include(p => p.Hotel).
-                    FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
+                RoomPrice prices = Aboba().FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
                 sumDp.Text = prices.Price.ToString();
                 totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
+            }
+            catch (FormatException)
+            {
+                Utils.Error("Неверный формат цены");
             }
             catch (Exception ex)
             {
@@ -121,7 +128,45 @@ namespace Hotels.Pages
 
         private void sumDp_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            Dp_SelectionChanged(null, null);
+            if(sumDp.Text == "")
+            {
+                sumDp.Text = "0";
+            }
+            try
+            {
+                TimeSpan days = endDp.SelectedDate.Value - startDp.SelectedDate.Value;
+                Room category = (roomCb.SelectedItem as Room);
+                long? category1 = category.CategotyId;
+                Hotel hotel = hotelCb.SelectedItem as Hotel;
+                RoomPrice prices = Aboba().FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
+                totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
+            }
+            catch (FormatException)
+            {
+                Utils.Error("Неверный формат цены");
+            }
+            catch (Exception ex)
+            {
+                Utils.Error(ex.Message);
+            }
+        }
+
+        private List<RoomPrice> Aboba()
+        {
+            List<RoomPrice> prices = Utils.db.RoomPrices.Include(p => p.Hotel).ToList();
+            List<RoomPrice> toRemove = new List<RoomPrice>();
+            foreach(RoomPrice price in prices)
+            {
+                if (price.Date.Value.Date > endDp.SelectedDate.Value)
+                {
+                    toRemove.Add(price);
+                }
+            }
+            foreach (RoomPrice price in toRemove)
+            {
+                prices.Remove(price);
+            }
+            return prices;
         }
     }
 }
