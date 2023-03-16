@@ -74,7 +74,7 @@ namespace Hotels.Pages
             roomCb.SelectedIndex = 0;
             endDp.SelectedDateChanged += Dp_SelectionChanged;
             startDp.SelectedDateChanged += Dp_SelectionChanged;
-            sumDp.SelectionChanged += Dp_SelectionChanged;
+            
         }
 
         private void hotelCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -117,6 +117,11 @@ namespace Hotels.Pages
             {
                 Utils.Error(ex.Message);
             }
+        }
+
+        private void sumDp_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            Dp_SelectionChanged(null, null);
         }
     }
 }
