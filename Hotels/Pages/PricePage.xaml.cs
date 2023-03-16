@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hotels.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Hotels.Pages
         public PricePage()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<RoomPrice> prices = Utils.db.RoomPrices.ToList();
+
         }
     }
 }

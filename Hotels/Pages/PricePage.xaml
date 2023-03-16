@@ -6,9 +6,16 @@
       xmlns:local="clr-namespace:Hotels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PricePage">
+      Title="Прайс-лист" Loaded="Page_Loaded">
 
     <Grid>
-        
+        <DataGrid x:Name="hotelsDg" Grid.Row="1" Grid.ColumnSpan="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Отель" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Отель" Binding="{Binding StandartPrice}"/>
+                <DataGridTextColumn Header="Отель" Binding="{Binding LuxPrice}"/>
+                <DataGridTextColumn Header="Отель" Binding="{Binding ApartmentPrice}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

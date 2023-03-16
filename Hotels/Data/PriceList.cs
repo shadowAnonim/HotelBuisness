@@ -8,6 +8,9 @@ namespace Hotels.Data
 {
     internal class PriceList
     {
-        
+        public string Name { get; set; }
+        public decimal StandartPrice { get; set; }
+        public decimal LuxPrice { get; set; }
+        public decimal ApartmentPrice { get; set; }
     }
 }
