@@ -15,12 +15,16 @@
                 <ComboBox x:Name="hotelCb" SelectedItem="{Binding Hotel, Mode=TwoWay}" DisplayMemberPath="Name"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Отель:" Width="75"/>
+                <Label Content="Дата:" Width="75"/>
                 <DatePicker x:Name="datePicker" SelectedDate="{Binding Date, Mode=TwoWay}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Отель:" Width="75"/>
+                <Label Content="Категория:" Width="75"/>
                 <ComboBox x:Name="categoryCb" SelectedItem="{Binding Category, Mode=TwoWay}" DisplayMemberPath="Name"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Цена:" Width="75"/>
+                <ComboBox x:Name="priceCb" SelectedItem="{Binding Category, Mode=TwoWay}" DisplayMemberPath="Name"/>
             </StackPanel>
             <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
         </StackPanel>

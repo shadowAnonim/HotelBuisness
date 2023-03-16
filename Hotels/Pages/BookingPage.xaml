@@ -38,6 +38,7 @@
                 <Label Content="Стоимость:" Width="75"/>
                 <Label x:Name="totalDp" Width="120"/>
             </StackPanel>
+            <Label x:Name="discountLbl"/>
             <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
         </StackPanel>
     </Grid>
