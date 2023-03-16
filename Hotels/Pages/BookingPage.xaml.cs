@@ -119,10 +119,18 @@ namespace Hotels.Pages
                 long? category1 = category.CategotyId;
                 Hotel hotel = hotelCb.SelectedItem as Hotel;
                 RoomPrice prices = Aboba().FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
-                sumDp.Text = prices.Price.ToString();
+                if (prices == null)
+                {
+                    sumDp.Text = "0";
+                    MessageBox.Show("Нет цен для выбранной даты", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    sumDp.Text = prices.Price.ToString();
+                }
                 if (decimal.TryParse(sumDp.Text, out decimal x))
                 {
-                    totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
+                    totalDp.Content = ((days.Days * decimal.Parse(sumDp.Text)) * (1 - decimal.Parse(discountLbl.Content.ToString().Split(' ')[1]) / 100)).ToString();
                 }
                 else
                 {
@@ -150,10 +158,18 @@ namespace Hotels.Pages
                 long? category1 = category.CategotyId;
                 Hotel hotel = hotelCb.SelectedItem as Hotel;
                 RoomPrice prices = Aboba().FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
-                sumDp.Text = prices.Price.ToString();
+                if (prices == null)
+                {
+                    sumDp.Text = "0";
+                    MessageBox.Show("Нет цен для выбранной даты", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    sumDp.Text = prices.Price.ToString();
+                }
                 if (decimal.TryParse(sumDp.Text, out decimal x))
                 {
-                    totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
+                    totalDp.Content = ((days.Days * decimal.Parse(sumDp.Text)) * (1 - decimal.Parse(discountLbl.Content.ToString().Split(' ')[1]) / 100)).ToString();
                 }
                 else
                 {
@@ -185,7 +201,7 @@ namespace Hotels.Pages
                 long? category1 = category.CategotyId;
                 Hotel hotel = hotelCb.SelectedItem as Hotel;
                 RoomPrice prices = Aboba().FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
-                totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
+                totalDp.Content = ((days.Days * decimal.Parse(sumDp.Text)) * (1 - decimal.Parse(discountLbl.Content.ToString().Split(' ')[1]) / 100)).ToString();
             }
             catch (FormatException)
             {

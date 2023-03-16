@@ -45,7 +45,7 @@ namespace Hotels.Pages
                 "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question)
                 == MessageBoxResult.Yes)
             {
-                Utils.db.Rooms.Remove(selected);
+                //Utils.db.Rooms.Remove(selected);
                 Utils.db.SaveChanges();
                 fillDataGrid();
             }
