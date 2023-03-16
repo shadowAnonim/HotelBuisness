@@ -86,5 +86,10 @@ namespace Hotels.Pages
         {
             NavigationService.Navigate(new SeasonsPage());
         }
+
+        private void sellingsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SellingsPage());
+        }
     }
 }

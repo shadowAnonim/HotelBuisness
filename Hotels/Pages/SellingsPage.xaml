@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Hotels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Анализ эффективности продаж">
+      Title="Анализ эффективности продаж" Loaded="PageLoaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +17,7 @@
             <Label Content="Дата:"/>
             <DatePicker x:Name="datePk"/>
             <Label Content="Отель"/>
-            <ComboBox x:Name="hotelsCb"/>
+            <ComboBox x:Name="hotelsCb" DisplayMemberPath="Name"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <StackPanel Orientation="Horizontal">
@@ -37,8 +37,8 @@
                 <Label x:Name="adrLb" Width="75"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="PevPar" Width="200"/>
-                <Label x:Name="pevLb" Width="75"/>
+                <Label Content="RevPar" Width="200"/>
+                <Label x:Name="revLb" Width="75"/>
             </StackPanel>
         </StackPanel>
     </Grid>
