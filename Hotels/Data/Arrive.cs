@@ -7,11 +7,11 @@ public partial class Arrive
 {
     public long Id { get; set; }
 
-    public byte[] Date { get; set; } = null!;
+    public DateTime? Date { get; set; } = null!;
 
     public long RoomId { get; set; }
 
-    public byte[] DepartureDate { get; set; } = null!;
+    public DateTime? DepartureDate { get; set; } = null!;
 
     public long? BookingId { get; set; }
 

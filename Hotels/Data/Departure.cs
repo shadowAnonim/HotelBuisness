@@ -7,7 +7,7 @@ public partial class Departure
 {
     public long Id { get; set; }
 
-    public byte[] Date { get; set; } = null!;
+    public DateTime? Date { get; set; } = null!;
 
     public long RoomId { get; set; }
 

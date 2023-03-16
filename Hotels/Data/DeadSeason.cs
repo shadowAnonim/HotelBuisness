@@ -5,9 +5,9 @@ namespace Hotels.Data;
 
 public partial class DeadSeason
 {
-    public byte[] StartDate { get; set; } = null!;
+    public DateTime? StartDate { get; set; } = null!;
 
-    public byte[] EndDate { get; set; } = null!;
+    public DateTime? EndDate { get; set; } = null!;
 
     public long Id { get; set; }
 
