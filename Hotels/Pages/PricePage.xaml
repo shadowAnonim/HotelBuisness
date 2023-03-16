@@ -9,12 +9,20 @@
       Title="Прайс-лист" Loaded="Page_Loaded">
 
     <Grid>
-        <DataGrid x:Name="hotelsDg" Grid.Row="1" Grid.ColumnSpan="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Дата:"/>
+            <DatePicker x:Name="datePicker" SelectedDateChanged="datePicker_SelectedDateChanged"/>
+        </StackPanel>
+        <DataGrid x:Name="priceDg" Grid.Row="1" Grid.ColumnSpan="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Отель" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Отель" Binding="{Binding StandartPrice}"/>
-                <DataGridTextColumn Header="Отель" Binding="{Binding LuxPrice}"/>
-                <DataGridTextColumn Header="Отель" Binding="{Binding ApartmentPrice}"/>
+                <DataGridTextColumn Header="Стандарт" Binding="{Binding StandartPrice}"/>
+                <DataGridTextColumn Header="Люкс" Binding="{Binding LuxPrice}"/>
+                <DataGridTextColumn Header="Апартамент" Binding="{Binding ApartmentPrice}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

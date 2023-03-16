@@ -33,7 +33,7 @@
             </GroupBox>
             <GroupBox Header="Цены">
                 <StackPanel>
-                    <Button x:Name="priceBtn" Content="Прайс-лист" Click="arrivalBtn_Click" />
+                    <Button x:Name="priceBtn" Content="Прайс-лист" Click="priceBtn_Click" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>

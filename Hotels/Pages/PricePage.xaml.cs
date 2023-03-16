@@ -24,12 +24,56 @@ namespace Hotels.Pages
         public PricePage()
         {
             InitializeComponent();
+            datePicker.SelectedDate = DateTime.Now;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            List<RoomPrice> prices = Utils.db.RoomPrices.ToList();
+            fillDataGrid();
+        }
 
+        private void fillDataGrid()
+        {
+            List<RoomPrice> prices = Utils.db.RoomPrices.ToList();
+            List<RoomPrice> toRemove = new List<RoomPrice>();
+            foreach(RoomPrice price in prices)
+            {
+                if (price.Date.Value.Date > datePicker.SelectedDate.Value.Date)
+                {
+                    toRemove.Add(price);
+                }
+            }
+            foreach (RoomPrice price in toRemove)
+            {
+                prices.Remove(price);
+            }
+            List<PriceList> priceList = new List<PriceList>();
+            foreach (Hotel hotel in Utils.db.Hotels.ToList())
+            {
+                priceList.Add(new PriceList() { Name = hotel.Name });
+            }
+            foreach (RoomPrice price in prices)
+            {
+                PriceList curr = priceList.FirstOrDefault(p => p.Name == price.Hotel.Name);
+                switch (price.CategoryId)
+                {
+                    case 1:
+                        curr.StandartPrice = price.Price.Value.ToString() + "руб./сут";
+                        break;
+                    case 2:
+                        curr.LuxPrice = price.Price.Value.ToString() + "руб./сут";
+                        break;
+                    case 3:
+                        curr.ApartmentPrice = price.Price.Value.ToString() + "руб./сут";
+                        break;
+                }
+            }
+            priceDg.ItemsSource = priceList;
+        }
+
+        private void datePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            fillDataGrid();
         }
     }
 }
