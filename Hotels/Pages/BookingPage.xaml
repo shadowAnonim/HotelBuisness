@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Hotels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="BookingPage" Loaded="Page_Loaded">
+      Title="Бронирование" Loaded="Page_Loaded">
 
     <Grid x:Name="main">
         <StackPanel>
@@ -31,8 +31,12 @@
                 <DatePicker x:Name="endDp" SelectedDate="{Binding DepartureDate}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Стоимость:" Width="75"/>
+                <Label Content="Цена:" Width="75"/>
                 <TextBox x:Name="sumDp" Text="{Binding Total}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Стоимость:" Width="75"/>
+                <Label x:Name="totalDp" Width="120"/>
             </StackPanel>
             <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
         </StackPanel>

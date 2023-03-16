@@ -1,4 +1,5 @@
 ﻿using Hotels.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,13 +37,14 @@ namespace Hotels.Pages
             else
             {
                 this.booking = new Booking();
+                this.booking.Room = Utils.db.Rooms.First();
+                roomCb.SelectedIndex = 0;
                 this.booking.BookingDate = DateTime.Now;
                 this.booking.Accept = false;
                 this.booking.ArrivalDate = DateTime.Now;
                 this.booking.DepartureDate = DateTime.Now.AddDays(1);
-                this.booking.Room = Utils.db.Rooms.First();
+
                 clientCb.SelectedIndex = 0;
-                roomCb.SelectedIndex = 0;
             }
 
             main.DataContext = this.booking;
@@ -68,7 +70,11 @@ namespace Hotels.Pages
             clientCb.ItemsSource = Utils.db.Clients.ToList();
             hotelCb.ItemsSource = Utils.db.Hotels.ToList();
             Hotel currHotel = hotelCb.SelectedItem as Hotel;
-            roomCb.ItemsSource = Utils.db.Rooms.Where(r => r.Hotel == currHotel).ToList();
+            roomCb.ItemsSource = Utils.db.Rooms.Include(r => r.Categoty).Where(r => r.Hotel == currHotel).ToList();
+            roomCb.SelectedIndex = 0;
+            endDp.SelectedDateChanged += Dp_SelectionChanged;
+            startDp.SelectedDateChanged += Dp_SelectionChanged;
+            sumDp.SelectionChanged += Dp_SelectionChanged;
         }
 
         private void hotelCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -77,6 +83,40 @@ namespace Hotels.Pages
             List<Room> rooms = Utils.db.Rooms.Where(r => r.Hotel == current).ToList();
             roomCb.ItemsSource = rooms;
             roomCb.SelectedIndex = 0;
+            try
+            {
+                TimeSpan days = endDp.SelectedDate.Value - startDp.SelectedDate.Value;
+                Room category = (roomCb.SelectedItem as Room);
+                long? category1 = category.CategotyId;
+                Hotel hotel = hotelCb.SelectedItem as Hotel;
+                RoomPrice prices = Utils.db.RoomPrices.Include(p => p.Hotel).
+                    FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
+                sumDp.Text = prices.Price.ToString();
+                totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
+            }
+            catch(Exception ex)
+            {
+                Utils.Error(ex.Message);
+            }
+        }
+
+        private void Dp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                TimeSpan days = endDp.SelectedDate.Value - startDp.SelectedDate.Value;
+                Room category = (roomCb.SelectedItem as Room);
+                long? category1 = category.CategotyId;
+                Hotel hotel = hotelCb.SelectedItem as Hotel;
+                RoomPrice prices = Utils.db.RoomPrices.Include(p => p.Hotel).
+                    FirstOrDefault(p => p.Hotel == hotel && p.CategoryId == category1);
+                sumDp.Text = prices.Price.ToString();
+                totalDp.Content = (days.Days * decimal.Parse(sumDp.Text)).ToString();
+            }
+            catch (Exception ex)
+            {
+                Utils.Error(ex.Message);
+            }
         }
     }
 }

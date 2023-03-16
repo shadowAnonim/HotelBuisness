@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Hotels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="BookingsPage" Loaded="Page_Loaded">
+      Title="Брони" Loaded="Page_Loaded">
     <Page.Resources>
         <local:ByteToDateConverter x:Key="DateConverter" />
     </Page.Resources>
