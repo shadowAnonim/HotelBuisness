@@ -13,5 +13,7 @@ public partial class Hotel
 
     public virtual Region? Region { get; set; }
 
+    public virtual ICollection<RoomPrice> RoomPrices { get; } = new List<RoomPrice>();
+
     public virtual ICollection<Room> Rooms { get; } = new List<Room>();
 }

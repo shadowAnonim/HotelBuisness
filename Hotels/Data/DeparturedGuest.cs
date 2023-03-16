@@ -9,5 +9,9 @@ public partial class DeparturedGuest
 
     public long GuestId { get; set; }
 
+    public long DepartureId { get; set; }
+
+    public virtual Departure Departure { get; set; } = null!;
+
     public virtual Guest Guest { get; set; } = null!;
 }

@@ -11,5 +11,7 @@ public partial class Category
 
     public long? PeopleCount { get; set; }
 
+    public virtual ICollection<RoomPrice> RoomPrices { get; } = new List<RoomPrice>();
+
     public virtual ICollection<Room> Rooms { get; } = new List<Room>();
 }

@@ -7,13 +7,15 @@ public partial class Departure
 {
     public long Id { get; set; }
 
-    public DateTime? Date { get; set; } = null!;
+    public byte[] Date { get; set; } = null!;
 
     public long RoomId { get; set; }
 
     public long? BookingId { get; set; }
 
     public virtual Booking? Booking { get; set; }
+
+    public virtual ICollection<DeparturedGuest> DeparturedGuests { get; } = new List<DeparturedGuest>();
 
     public virtual Room Room { get; set; } = null!;
 }

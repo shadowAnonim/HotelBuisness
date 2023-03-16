@@ -39,6 +39,8 @@ public partial class HotelsContext : DbContext
 
     public virtual DbSet<Room> Rooms { get; set; }
 
+    public virtual DbSet<RoomPrice> RoomPrices { get; set; }
+
     public virtual DbSet<State> States { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -170,7 +172,12 @@ public partial class HotelsContext : DbContext
             entity.HasIndex(e => e.Id, "IX_Departured_guest_id").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.DepartureId).HasColumnName("Departure_id");
             entity.Property(e => e.GuestId).HasColumnName("Guest_id");
+
+            entity.HasOne(d => d.Departure).WithMany(p => p.DeparturedGuests)
+                .HasForeignKey(d => d.DepartureId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.Guest).WithMany(p => p.DeparturedGuests)
                 .HasForeignKey(d => d.GuestId)
@@ -228,6 +235,26 @@ public partial class HotelsContext : DbContext
             entity.HasOne(d => d.State).WithMany(p => p.Rooms).HasForeignKey(d => d.StateId);
         });
 
+        modelBuilder.Entity<RoomPrice>(entity =>
+        {
+            entity.ToTable("RoomPrice");
+
+            entity.HasIndex(e => e.Id, "IX_RoomPrice_Id").IsUnique();
+
+            entity.Property(e => e.CategoryId).HasColumnName("Category_id");
+            entity.Property(e => e.Date).HasColumnType("DATETIME");
+            entity.Property(e => e.HotelId).HasColumnName("Hotel_id");
+            entity.Property(e => e.Price).HasColumnType("DECIMAL (10, 2)");
+
+            entity.HasOne(d => d.Category).WithMany(p => p.RoomPrices)
+                .HasForeignKey(d => d.CategoryId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            entity.HasOne(d => d.Hotel).WithMany(p => p.RoomPrices)
+                .HasForeignKey(d => d.HotelId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
         modelBuilder.Entity<State>(entity =>
         {
             entity.ToTable("State");
@@ -236,16 +263,6 @@ public partial class HotelsContext : DbContext
 
             entity.Property(e => e.Name).HasColumnType("VARCHAR (2, 15)");
         });
-
-        modelBuilder
-        .Entity<Booking>()
-        .Property(e => e.Total)
-        .HasConversion<decimal>();
-
-        modelBuilder
-        .Entity<Booking>()
-        .Property(e => e.Accept)
-        .HasConversion<bool>();
 
         OnModelCreatingPartial(modelBuilder);
     }
