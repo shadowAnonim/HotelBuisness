@@ -25,6 +25,7 @@ namespace Hotels.Pages
         public NightsPage()
         {
             InitializeComponent();
+            datePicker.SelectedDate = DateTime.Now;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -42,7 +43,7 @@ namespace Hotels.Pages
                     List<Booking> correctBookings = Utils.db.Bookings.Include(b => b.Room).ThenInclude(b => b.Hotel)
                         .Include(b => b.Room).ThenInclude(b => b.Categoty)
                         .Where(b => b.Room.Hotel == hotel &&
-                        b.Accept.Value &&
+                        b.Accept.Value && b.ArrivalDate.Value <= datePicker.SelectedDate.Value &&
                         b.Room.Categoty == category).ToList();
                     nights.Add(new Night(hotel, category, 
                         correctBookings.Sum(b => (b.DepartureDate - b.ArrivalDate).Value.Days), 
@@ -50,6 +51,11 @@ namespace Hotels.Pages
                 }
             }
             roomsDg.ItemsSource = nights;
+        }
+
+        private void datePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            fillDataGrid();
         }
     }
 }

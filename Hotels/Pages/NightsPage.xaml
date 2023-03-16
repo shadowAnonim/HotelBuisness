@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <DatePicker x:Name="datePicker" Grid.Column="1" SelectedDateChanged="datePicker_SelectedDateChanged"/>
         <DataGrid x:Name="roomsDg" Grid.Row="1" Grid.ColumnSpan="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Отель" Binding="{Binding Hotel.Name}"/>
