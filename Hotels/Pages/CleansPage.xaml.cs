@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hotels.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,40 @@ namespace Hotels.Pages
         public CleansPage()
         {
             InitializeComponent();
+        }
+
+        private void fillDataGrid()
+        {
+            List<Clean> cleans = Utils.db.Cleans.Include(c => c.Room).ThenInclude(r => r.Hotel).Include(c => c.Worker).ToList();
+            cleansDg.ItemsSource = cleans;
+        }
+
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            fillDataGrid();
+        }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Clean selected = cleansDg.SelectedItem as Clean;
+            if (selected == null)
+            {
+                Utils.Error("Выберите заявку");
+                return;
+            }
+            if (MessageBox.Show("Вы точно хотите удалить эту заявку",
+                "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question)
+                == MessageBoxResult.Yes)
+            {
+                Utils.db.Cleans.Remove(selected);
+                Utils.db.SaveChanges();
+                fillDataGrid();
+            }
         }
     }
 }

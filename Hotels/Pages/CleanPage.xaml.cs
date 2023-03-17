@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hotels.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,26 @@ namespace Hotels.Pages
     /// </summary>
     public partial class CleanPage : Page
     {
-        public CleanPage()
+        Clean clean;
+        public CleanPage(Clean clean)
         {
             InitializeComponent();
+            this.clean = clean;
+
+
+            main.DataContext = this.clean;
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Utils.db.SaveChanges();
+            NavigationService.GoBack();
+        }
+
+        private void PageLoaded(object sender, RoutedEventArgs e)
+        {
+            nameTb.ItemsSource = Utils.db.Workers.ToList();
+            stateCb.ItemsSource = Utils.db.CleanStates.ToList();
         }
     }
 }

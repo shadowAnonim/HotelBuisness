@@ -6,9 +6,27 @@
       xmlns:local="clr-namespace:Hotels.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CleansPage">
+      Title="Заявки на уборку">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="editBtn" Content="Редактировать" Grid.Column="0" Click="editBtn_Click"/>
+        <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="1" BorderBrush="Red" BorderThickness="3,3,3,3" Click="deleteBtn_Click"/>
+        <DataGrid x:Name="cleansDg" Grid.Row="1" Grid.ColumnSpan="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Date}"/>
+                <DataGridTextColumn Header="Работник" Binding="{Binding Worker.FullName}"/>
+                <DataGridTextColumn Header="Отель" Binding="{Binding Room.Hotel.Name}"/>
+                <DataGridTextColumn Header="Комната" Binding="{Binding Room.Name}"/>
+                <DataGridTextColumn Header="СТатус" Binding="{Binding CleanState.Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>
