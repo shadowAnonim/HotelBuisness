@@ -32,11 +32,7 @@ namespace Hotels.Pages
             datePk.SelectedDate = DateTime.Now;
             hotelsCb.ItemsSource = Utils.db.Hotels.ToList();
             hotelsCb.SelectedIndex = 0;
-            totalLb.Content = "0";
-            nightsLb.Content = "0";
-            zagruzLb.Content = "0";
-            adrLb.Content = "0";
-            revLb.Content = "0";
+            Change(hotelsCb.SelectedItem as Hotel);
             hotelsCb.SelectionChanged += hotelsCb_SelectionChanged;
             datePk.SelectedDateChanged += datePk_SelectedDateChanged;
         }
