@@ -40,7 +40,11 @@ namespace Hotels.Pages
         private void PageLoaded(object sender, RoutedEventArgs e)
         {
             nameTb.ItemsSource = Utils.db.Workers.ToList();
-            stateCb.ItemsSource = Utils.db.CleanStates.ToList();
+            if (clean.CleanStateId > 1)
+            {
+
+            }
+            stateCb.ItemsSource = Utils.db.CleanStates.Skip((int)clean.CleanStateId - 1).ToList();
         }
     }
 }

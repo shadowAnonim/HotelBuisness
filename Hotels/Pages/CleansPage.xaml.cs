@@ -29,7 +29,7 @@ namespace Hotels.Pages
 
         private void fillDataGrid()
         {
-            List<Clean> cleans = Utils.db.Cleans.Include(c => c.Room).ThenInclude(r => r.Hotel).Include(c => c.Worker).ToList();
+            List<Clean> cleans = Utils.db.Cleans.Include(c => c.Room).ThenInclude(r => r.Hotel).Include(c => c.Worker).Include(c => c.CleanState).ToList();
             cleansDg.ItemsSource = cleans;
         }
 
@@ -40,7 +40,13 @@ namespace Hotels.Pages
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Clean selected = cleansDg.SelectedItem as Clean;
+            if (selected == null)
+            {
+                Utils.Error("Выберите заявку");
+                return;
+            }
+            NavigationService.Navigate(new CleanPage(selected));
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
