@@ -22,9 +22,9 @@
         <DataGrid x:Name="cleansDg" Grid.Row="1" Grid.ColumnSpan="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата" Binding="{Binding Date}"/>
-                <DataGridTextColumn Header="Работник" Binding="{Binding Worker.FullName}"/>
+                <DataGridTextColumn Header="ФИО горничной" Binding="{Binding Worker.FullName}"/>
                 <DataGridTextColumn Header="Отель" Binding="{Binding Room.Hotel.Name}"/>
-                <DataGridTextColumn Header="Комната" Binding="{Binding Room.Name}"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding Room.Name}"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding CleanState.Name}"/>
             </DataGrid.Columns>
         </DataGrid>

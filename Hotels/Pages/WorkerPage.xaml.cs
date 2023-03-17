@@ -43,7 +43,11 @@ namespace Hotels.Pages
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (nameTb.Text.Trim().Length > 150) 
+            {
+                Utils.Error("Имя слишком длинное");
+                return;
+            }
             if (!edit)
             {
                 Utils.db.Workers.Add(worker);
