@@ -111,10 +111,5 @@ namespace Hotels.Pages
         {
             NavigationService.Navigate(new CleansPage());
         }
-
-        private void workersBtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new WorkersPage());
-        }
     }
 }
