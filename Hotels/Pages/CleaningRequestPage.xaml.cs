@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hotels.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,7 @@ namespace Hotels.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Room room = (((sender as Button).Parent as StackPanel).Parent as StackPanel).DataContext as Room;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
