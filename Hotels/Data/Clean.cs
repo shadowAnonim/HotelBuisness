@@ -13,7 +13,11 @@ public partial class Clean
 
     public long CleanStateId { get; set; }
 
+    public long? WorkerId { get; set; }
+
     public virtual CleanState CleanState { get; set; } = null!;
 
     public virtual Room Room { get; set; } = null!;
+
+    public virtual Worker? Worker { get; set; }
 }

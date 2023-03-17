@@ -1,0 +1,24 @@
+﻿<Page x:Class="Hotels.Pages.WorkerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hotels.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Работник" Loaded="PageLoaded">
+
+    <Grid x:Name="main">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="ФИО:" Width="75"/>
+                <TextBox x:Name="nameTb" Text="{Binding FullName, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Вид работ" Width="75"/>
+                <ComboBox x:Name="workCb" SelectedItem="{Binding Work, Mode=TwoWay}" DisplayMemberPath="Name"/>
+            </StackPanel>
+            <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

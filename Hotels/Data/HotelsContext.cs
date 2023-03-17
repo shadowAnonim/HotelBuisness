@@ -143,6 +143,7 @@ public partial class HotelsContext : DbContext
 
             entity.Property(e => e.Date).HasColumnType("DATETIME");
             entity.Property(e => e.RoomId).HasColumnName("Room_id");
+            entity.Property(e => e.WorkerId).HasColumnName("Worker_id");
 
             entity.HasOne(d => d.CleanState).WithMany(p => p.Cleans)
                 .HasForeignKey(d => d.CleanStateId)
@@ -151,6 +152,8 @@ public partial class HotelsContext : DbContext
             entity.HasOne(d => d.Room).WithMany(p => p.Cleans)
                 .HasForeignKey(d => d.RoomId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            entity.HasOne(d => d.Worker).WithMany(p => p.Cleans).HasForeignKey(d => d.WorkerId);
         });
 
         modelBuilder.Entity<CleanState>(entity =>
@@ -358,6 +361,7 @@ public partial class HotelsContext : DbContext
                 .HasForeignKey(d => d.WorkId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
+
         modelBuilder
         .Entity<Booking>()
         .Property(e => e.Total)
@@ -374,7 +378,6 @@ public partial class HotelsContext : DbContext
         .Property(e => e.Price)
         .HasConversion<decimal>();
         OnModelCreatingPartial(modelBuilder);
-
 
         OnModelCreatingPartial(modelBuilder);
     }
