@@ -51,6 +51,7 @@
             <GroupBox Header="Хозяйственные службы">
                 <StackPanel>
                     <Button x:Name="cleaningBtn" Content="Создать заявку" Click="cleaningBtn_Click" />
+                    <Button x:Name="buisnessBtn" Content="Анализ занятости" Click="buisnessBtn_Click" />
                 </StackPanel>
             </GroupBox>
         </StackPanel>

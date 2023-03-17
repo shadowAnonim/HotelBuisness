@@ -1,0 +1,21 @@
+﻿<Page x:Class="Hotels.Pages.CleanerBuisnessPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hotels.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Анализ занятости горничных" Loaded="Page_Loaded">
+
+    <Grid>
+        <DataGrid x:Name="roomsDg" Grid.Row="1" Grid.ColumnSpan="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Name.FullName}"/>
+                <DataGridTextColumn Header="К уборке" Binding="{Binding Ready}"/>
+                <DataGridTextColumn Header="На уборке" Binding="{Binding Now}"/>
+                <DataGridTextColumn Header="Убрано" Binding="{Binding Cleaned}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
