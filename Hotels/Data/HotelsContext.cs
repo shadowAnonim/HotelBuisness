@@ -23,6 +23,10 @@ public partial class HotelsContext : DbContext
 
     public virtual DbSet<Category> Categories { get; set; }
 
+    public virtual DbSet<Clean> Cleans { get; set; }
+
+    public virtual DbSet<CleanState> CleanStates { get; set; }
+
     public virtual DbSet<Client> Clients { get; set; }
 
     public virtual DbSet<ClientType> ClientTypes { get; set; }
@@ -47,9 +51,13 @@ public partial class HotelsContext : DbContext
 
     public virtual DbSet<State> States { get; set; }
 
+    public virtual DbSet<WorkType> WorkTypes { get; set; }
+
+    public virtual DbSet<Worker> Workers { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("Data Source=./Data/Hotels");
+        => optionsBuilder.UseSqlite("DataSource=./Data/Hotels");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -125,6 +133,33 @@ public partial class HotelsContext : DbContext
 
             entity.Property(e => e.Name).HasColumnType("VARCHAR (2, 50)");
             entity.Property(e => e.PeopleCount).HasColumnName("People_count");
+        });
+
+        modelBuilder.Entity<Clean>(entity =>
+        {
+            entity.ToTable("Clean");
+
+            entity.HasIndex(e => e.Id, "IX_Clean_Id").IsUnique();
+
+            entity.Property(e => e.Date).HasColumnType("DATETIME");
+            entity.Property(e => e.RoomId).HasColumnName("Room_id");
+
+            entity.HasOne(d => d.CleanState).WithMany(p => p.Cleans)
+                .HasForeignKey(d => d.CleanStateId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            entity.HasOne(d => d.Room).WithMany(p => p.Cleans)
+                .HasForeignKey(d => d.RoomId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<CleanState>(entity =>
+        {
+            entity.ToTable("CleanState");
+
+            entity.HasIndex(e => e.Id, "IX_CleanState_Id").IsUnique();
+
+            entity.Property(e => e.Name).HasColumnType("VARCHAR (2, 30)");
         });
 
         modelBuilder.Entity<Client>(entity =>
@@ -299,6 +334,30 @@ public partial class HotelsContext : DbContext
             entity.Property(e => e.Name).HasColumnType("VARCHAR (2, 15)");
         });
 
+        modelBuilder.Entity<WorkType>(entity =>
+        {
+            entity.ToTable("Work_type");
+
+            entity.HasIndex(e => e.Id, "IX_Work_type_id").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Name).HasColumnType("VARCHAR (3, 30)");
+        });
+
+        modelBuilder.Entity<Worker>(entity =>
+        {
+            entity.ToTable("Worker");
+
+            entity.HasIndex(e => e.Id, "IX_Worker_id").IsUnique();
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.FullName).HasColumnType("VARCHAR (2, 150)");
+            entity.Property(e => e.WorkId).HasColumnName("Work_id");
+
+            entity.HasOne(d => d.Work).WithMany(p => p.Workers)
+                .HasForeignKey(d => d.WorkId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        });
         modelBuilder
         .Entity<Booking>()
         .Property(e => e.Total)
@@ -315,6 +374,7 @@ public partial class HotelsContext : DbContext
         .Property(e => e.Price)
         .HasConversion<decimal>();
         OnModelCreatingPartial(modelBuilder);
+
 
         OnModelCreatingPartial(modelBuilder);
     }

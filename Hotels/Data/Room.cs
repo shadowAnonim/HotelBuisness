@@ -21,6 +21,8 @@ public partial class Room
 
     public virtual Category? Categoty { get; set; }
 
+    public virtual ICollection<Clean> Cleans { get; } = new List<Clean>();
+
     public virtual ICollection<Departure> Departures { get; } = new List<Departure>();
 
     public virtual Hotel? Hotel { get; set; }
