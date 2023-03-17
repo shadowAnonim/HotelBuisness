@@ -1,4 +1,5 @@
 ﻿using Hotels.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,14 @@ namespace Hotels.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            roomsList.ItemsSource = Utils.db.Rooms.ToList();
+            hotelCb.ItemsSource = Utils.db.Hotels.Include(h => h.Rooms);
+            hotelCb.SelectedIndex = 0;            
+        }
+
+        private void hotelCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Hotel hotel = hotelCb.SelectedItem as Hotel;
+            roomsList.ItemsSource = Utils.db.Rooms.Where(r => r.Hotel == hotel).ToList();            
         }
     }
 }

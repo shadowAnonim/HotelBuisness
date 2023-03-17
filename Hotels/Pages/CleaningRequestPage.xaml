@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
             <Label Content="Отель:"/>
-            <ComboBox x:Name="hotelCb" DisplayMemberPath="Name"/>
+            <ComboBox x:Name="hotelCb" DisplayMemberPath="Name" SelectionChanged="hotelCb_SelectionChanged"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <Label Content="Номер к уборке" Width="100" HorizontalAlignment="Left"/>
