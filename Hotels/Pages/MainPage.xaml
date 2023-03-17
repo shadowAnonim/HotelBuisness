@@ -48,6 +48,11 @@
                     <Button x:Name="reportBtn" Content="Отчёт по продажам" Click="sellingsBtn_Click" />
                 </StackPanel>
             </GroupBox>
+            <GroupBox Header="Хозяйственные службы">
+                <StackPanel>
+                    <Button x:Name="cleaningBtn" Content="Создать заявку" Click="cleaningBtn_Click" />
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
     </Grid>
 </Page>
